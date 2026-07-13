@@ -45,7 +45,7 @@ function parseMarkdown(text) {
   return formattedLines.join('\n')
 }
 
-export default function Message({ role, content, sources, isTyping }) {
+export default function Message({ role, content, sources, isTyping, user }) {
   if (isTyping) {
     return (
       <div className="flex items-start gap-4 py-4 max-w-3xl mx-auto w-full">
@@ -71,9 +71,17 @@ export default function Message({ role, content, sources, isTyping }) {
             <Sparkles size={16} />
           </div>
         ) : (
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 text-white font-bold text-xs shadow-sm flex-shrink-0">
-            MU
-          </div>
+          user?.photoURL ? (
+            <img
+              src={user.photoURL}
+              alt="Avatar"
+              className="h-8 w-8 rounded-full border border-purple-500 shadow-md flex-shrink-0"
+            />
+          ) : (
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 text-white font-bold text-xs shadow-sm flex-shrink-0">
+              {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : 'U'}
+            </div>
+          )
         )}
 
         {/* Message body */}

@@ -7,6 +7,8 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/chat': 'http://127.0.0.1:8001',
+      '/auth': 'http://127.0.0.1:8001',
+      '/history': 'http://127.0.0.1:8001',
     },
   },
 })

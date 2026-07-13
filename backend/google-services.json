@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1096833649704",
+    "project_id": "cosmogpt-2323",
+    "storage_bucket": "cosmogpt-2323.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096833649704:android:6356cba2b115692df4791d",
+        "android_client_info": {
+          "package_name": "cosmogpt.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_lhRxjp8xe67ELGC3yx8FmApDaMmJEro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

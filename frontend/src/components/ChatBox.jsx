@@ -1,38 +1,14 @@
-import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import { useEffect, useRef } from 'react'
 import Message from './Message'
 import Input from './Input'
 import { Sparkles, ShieldCheck, Heart } from 'lucide-react'
 
-export default function ChatBox() {
-  const [messages, setMessages] = useState([])
-  const [loading, setLoading] = useState(false)
+export default function ChatBox({ messages = [], loading = false, onSend, user }) {
   const bottomRef = useRef(null)
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
-
-  const handleSend = async (question) => {
-    const userMsg = { role: 'user', content: question }
-    setMessages((prev) => [...prev, userMsg])
-    setLoading(true)
-
-    try {
-      const { data } = await axios.post('/chat', { question })
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: data.answer, sources: data.sources },
-      ])
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: 'Sorry, something went wrong. Please try again.', sources: [] },
-      ])
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const quickActions = [
     { text: 'Create a custom skincare routine', icon: Sparkles, color: 'text-purple-400' },
@@ -59,7 +35,7 @@ export default function ChatBox() {
 
             {/* Centered Input wrapper */}
             <div className="w-full">
-              <Input onSend={handleSend} loading={loading} />
+              <Input onSend={onSend} loading={loading} />
             </div>
 
             {/* Quick Actions List */}
@@ -69,7 +45,7 @@ export default function ChatBox() {
                 return (
                   <button
                     key={idx}
-                    onClick={() => handleSend(action.text)}
+                    onClick={() => onSend(action.text)}
                     className="flex flex-col gap-2 items-start p-4 rounded-2xl border border-dark-border bg-[#212121]/40 hover:bg-[#212121] hover:border-gray-500 text-left transition-all duration-200 group hover:-translate-y-0.5"
                   >
                     <Icon className={`${action.color} group-hover:scale-110 transition-transform duration-200`} size={20} />
@@ -88,14 +64,14 @@ export default function ChatBox() {
           <div className="flex-1 overflow-y-auto px-4 py-6">
             <div className="mx-auto max-w-3xl space-y-6">
               {messages.map((msg, i) => (
-                <Message key={i} role={msg.role} content={msg.content} sources={msg.sources} />
+                <Message key={i} role={msg.role} content={msg.content} sources={msg.sources} user={user} />
               ))}
               {loading && <Message role="assistant" isTyping />}
               <div ref={bottomRef} />
             </div>
           </div>
           {/* Floating Input at bottom */}
-          <Input onSend={handleSend} loading={loading} />
+          <Input onSend={onSend} loading={loading} />
         </div>
       )}
     </div>
