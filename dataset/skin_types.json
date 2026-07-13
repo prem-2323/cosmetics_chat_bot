@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Normal Skin",
+    "category": "Skin Type",
+    "description": "A balanced skin type characterized by adequate sebum production, good circulation, and a smooth texture. Normal skin has fine pores, an even tone, and no severe sensitivity or oiliness.",
+    "benefits": ["Balanced hydration", "Fine pores", "Even tone", "Good circulation", "Rarely breaks out", "Smooth texture"],
+    "usage": "Maintain with a consistent routine including gentle cleansing, moisturizing, and sun protection. Focus on prevention and maintenance rather than correction.",
+    "skin_types": [],
+    "skin_concerns": ["Prevention", "Aging", "Maintenance"],
+    "avoid_with": [],
+    "keywords": ["normal skin", "balanced skin", "healthy skin", "eudermic skin", "maintenance routine"]
+  },
+  {
+    "id": 2,
+    "title": "Dry Skin",
+    "category": "Skin Type",
+    "description": "A skin type with insufficient sebum production leading to a compromised barrier. Dry skin often feels tight, flaky, or rough and may show fine lines more prominently due to lack of lipids.",
+    "benefits": ["Needs rich moisturizers", "Benefits from occlusives", "Responds well to humectants", "Improves with barrier repair"],
+    "usage": "Use cream-based cleansers, rich moisturizers with ceramides, and occlusive ingredients. Avoid harsh sulfates and hot water. Apply moisturizer to damp skin.",
+    "skin_types": [],
+    "skin_concerns": ["Flakiness", "Tightness", "Rough texture", "Fine lines", "Barrier damage"],
+    "avoid_with": ["High alcohol denat content", "Sulfate-heavy cleansers", "Extreme climates without protection"],
+    "keywords": ["dry skin", "alipoid skin", "sebum deficiency", "barrier repair", "rich moisturizer", "lipid barrier"]
+  },
+  {
+    "id": 3,
+    "title": "Oily Skin",
+    "category": "Skin Type",
+    "description": "A skin type with overactive sebaceous glands producing excess sebum. Oily skin appears shiny, has enlarged pores, and is predisposed to acne and blackheads but tends to age slower.",
+    "benefits": ["Ages slower", "Natural moisture", "Less prone to wrinkles", "Resilient barrier"],
+    "usage": "Use gel-based cleansers, oil-free moisturizers, and regular exfoliation with salicylic acid. Include niacinamide to regulate oil production. Do not over-strip with harsh cleansers.",
+    "skin_types": [],
+    "skin_concerns": ["Shininess", "Large pores", "Blackheads", "Acne", "Excess sebum"],
+    "avoid_with": ["Heavy occlusives like petrolatum on face", "Over-cleansing that triggers rebound oiliness"],
+    "keywords": ["oily skin", "seborrheic skin", "excess sebum", "shiny skin", "large pores", "oil control"]
+  },
+  {
+    "id": 4,
+    "title": "Combination Skin",
+    "category": "Skin Type",
+    "description": "A skin type where different facial areas exhibit different characteristics, typically with an oily T-zone and normal to dry cheeks. It is the most common skin type among adults.",
+    "benefits": ["Balanced approach", "Manageable with correct routine", "Common skin type with established solutions"],
+    "usage": "Use different products on different zones or choose balanced formulations. Gel cleansers work well. Apply richer moisturizer on cheeks and lighter gel on T-zone.",
+    "skin_types": [],
+    "skin_concerns": ["T-zone oiliness", "Dry cheeks", "Pore size variation", "Balancing conflicting needs"],
+    "avoid_with": ["One-size-fits-all heavy creams", "Overly drying products on entire face"],
+    "keywords": ["combination skin", "mixed skin", "T-zone", "oily T-zone", "dry cheeks", "balanced routine"]
+  },
+  {
+    "id": 5,
+    "title": "Sensitive Skin",
+    "category": "Skin Type",
+    "description": "A skin type with heightened reactivity to internal and external triggers. Sensitive skin experiences stinging, burning, redness, or itching in response to products, weather, or stress.",
+    "benefits": ["Responds to gentle care", "Benefits from barrier support", "Improves with correct ingredients"],
+    "usage": "Use fragrance-free, hypoallergenic products with minimal ingredients. Patch test new products. Focus on barrier repair with ceramides, niacinamide, and soothing agents.",
+    "skin_types": [],
+    "skin_concerns": ["Redness", "Stinging", "Burning", "Itching", "Reactivity", "Barrier weakness"],
+    "avoid_with": ["Fragrance", "Essential oils", "High alcohol", "Harsh exfoliants", "Multiple active ingredients"],
+    "keywords": ["sensitive skin", "reactive skin", "hypersensitive", "barrier weakness", "fragrance free", "hypoallergenic"]
+  },
+  {
+    "id": 6,
+    "title": "Acne-Prone Skin",
+    "category": "Skin Type",
+    "description": "A skin condition where follicles become clogged with sebum and dead skin cells leading to comedones, papules, pustules, or cysts. It requires careful management of oil and bacteria.",
+    "benefits": ["Improves with consistent routine", "Responds to targeted ingredients", "Can be managed effectively"],
+    "usage": "Use salicylic acid or benzoyl peroxide for active acne. Incorporate niacinamide and retinoids. Avoid heavy occlusives. Change pillowcases frequently. Do not pick lesions.",
+    "skin_types": [],
+    "skin_concerns": ["Breakouts", "Comedones", "Papules", "Pustules", "Cysts", "Post-inflammatory hyperpigmentation"],
+    "avoid_with": ["Heavy oils like coconut oil on face", "Physical scrubbing", "Comedogenic ingredients"],
+    "keywords": ["acne prone skin", "acneic skin", "breakouts", "comedones", "blemish prone", "congested skin"]
+  },
+  {
+    "id": 7,
+    "title": "Mature Skin",
+    "category": "Skin Type",
+    "description": "Skin that has undergone chronological and photoaging changes resulting in reduced collagen, elastin, and lipid production. Mature skin shows wrinkles, sagging, and age spots.",
+    "benefits": ["Responds to anti-aging ingredients", "Benefits from retinoids", "Improves with peptides", "Hydration is effective"],
+    "usage": "Include retinoids, vitamin C, peptides, and sunscreen as essentials. Use richer moisturizers and incorporate gentle exfoliation. Focus on collagen support and hydration.",
+    "skin_types": [],
+    "skin_concerns": ["Wrinkles", "Sagging", "Age spots", "Loss of firmness", "Thinning skin", "Dryness"],
+    "avoid_with": ["Over-exfoliation on thin skin", "Irritating ingredients"],
+    "keywords": ["mature skin", "aging skin", "chronoaging", "photoaging", "wrinkled skin", "sagging skin"]
+  },
+  {
+    "id": 8,
+    "title": "Dehydrated Skin",
+    "category": "Skin Type",
+    "description": "A skin condition characterized by lack of water in the stratum corneum, which can affect any skin type. Dehydrated skin feels tight, looks dull, and shows fine lines and flaking.",
+    "benefits": ["Quickly responds to hydration", "Improves with humectants", "Benefits from layering"],
+    "usage": "Use humectants like hyaluronic acid and glycerin. Layer water-based products before occlusives. Incorporate a humidifier in dry environments. Drink adequate water.",
+    "skin_types": [],
+    "skin_concerns": ["Tightness", "Dullness", "Fine dehydration lines", "Flaking", "Rough texture"],
+    "avoid_with": ["Drying alcohols", "Over-exfoliation", "Very hot water cleansing"],
+    "keywords": ["dehydrated skin", "water deficient", "dull skin", "tight skin", "humectant therapy", "moisture depletion"]
+  },
+  {
+    "id": 9,
+    "title": "Rosacea-Prone Skin",
+    "category": "Skin Type",
+    "description": "A chronic skin condition characterized by facial redness, visible blood vessels, and sometimes acne-like bumps. Triggers include sun, heat, spicy foods, and certain skincare ingredients.",
+    "benefits": ["Can be managed with gentle routine", "Responds to anti-inflammatory ingredients", "Improves with sun protection"],
+    "usage": "Use extremely gentle, fragrance-free products. Avoid known triggers. Include azelaic acid, niacinamide, and green tea. Always wear mineral sunscreen. Consult a dermatologist.",
+    "skin_types": [],
+    "skin_concerns": ["Redness", "Flushing", "Visible capillaries", "Bumps and papules", "Stinging", "Heat sensitivity"],
+    "avoid_with": ["Alcohol denat", "Witch hazel", "Menthol", "Peppermint", "Eucalyptus", "Strong exfoliants"],
+    "keywords": ["rosacea prone skin", "redness", "couperose skin", "flushing", "sensitive redness", "vascular skin"]
+  },
+  {
+    "id": 10,
+    "title": "Eczema-Prone Skin",
+    "category": "Skin Type",
+    "description": "A skin type prone to atopic dermatitis characterized by an impaired barrier and immune dysregulation. It presents with dry, itchy, inflamed patches and requires careful moisturizing.",
+    "benefits": ["Improves with consistent barrier care", "Responds to emollients", "Benefits from gentle cleansing"],
+    "usage": "Use fragrance-free, hypoallergenic emollients. Apply moisturizer immediately after bathing. Use colloidal oatmeal and ceramide-rich products. Avoid scratching. Consult a dermatologist.",
+    "skin_types": [],
+    "skin_concerns": ["Itching", "Inflammation", "Dry patches", "Barrier damage", "Flaking", "Redness"],
+    "avoid_with": ["Fragrance", "Essential oils", "Harsh soaps", "Wool and rough fabrics", "Very hot water"],
+    "keywords": ["eczema prone skin", "atopic dermatitis", "dry itchy skin", "barrier dysfunction", "emollient therapy", "hypoallergenic"]
+  }
+]
