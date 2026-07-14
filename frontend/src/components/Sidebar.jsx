@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { SquarePen, Search, Pin, MessageSquare, Settings, Trash2, Plus, LogOut, Sidebar as SidebarIcon } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faMessage, faGear, faTrash, faPlus, faRightFromBracket, faBars, faChartPie } from '@fortawesome/free-solid-svg-icons'
 
 export default function Sidebar({
   open,
@@ -44,7 +45,7 @@ export default function Sidebar({
   const renderGroup = (title, items) => {
     if (items.length === 0) return null
     return (
-      <div className="space-y-1 mt-4">
+      <div className="space-y-1 mt-4 animate-fade-in-up">
         <h3 className="px-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider select-none">
           {title}
         </h3>
@@ -62,7 +63,7 @@ export default function Sidebar({
                 onClick={() => onSelectSession(session.session_id)}
               >
                 <div className="flex items-center gap-2.5 truncate w-full pr-6">
-                  <MessageSquare size={14} className="text-gray-400 flex-shrink-0" />
+                  <FontAwesomeIcon icon={faMessage} className="text-gray-400 flex-shrink-0" />
                   <span className="truncate">{session.title}</span>
                 </div>
                 
@@ -75,7 +76,7 @@ export default function Sidebar({
                   className="absolute right-2 opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-[#383838] text-gray-400 hover:text-rose-400 transition-opacity"
                   title="Delete chat"
                 >
-                  <Trash2 size={13} />
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
             )
@@ -96,7 +97,7 @@ export default function Sidebar({
             className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-dark-card cursor-pointer transition-colors text-white"
             title="Expand Sidebar"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-5 h-5 text-white animate-pulse">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-5 h-5 text-white animate-pulse-slow">
               <circle cx="12" cy="12" r="6" />
               <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
             </svg>
@@ -110,7 +111,7 @@ export default function Sidebar({
                 className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-400 hover:bg-dark-card hover:text-white transition-colors"
                 title="New Chat"
               >
-                <Plus size={20} />
+                <FontAwesomeIcon icon={faPlus} />
               </button>
             </div>
             <div className="relative group w-full flex justify-center">
@@ -119,7 +120,7 @@ export default function Sidebar({
                 className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-400 hover:bg-dark-card hover:text-white transition-colors"
                 title="Chat History"
               >
-                <MessageSquare size={20} />
+                <FontAwesomeIcon icon={faMessage} />
               </button>
             </div>
           </div>
@@ -128,7 +129,7 @@ export default function Sidebar({
         <div className="flex flex-col items-center gap-4 w-full px-2">
           <div className="relative group w-full flex justify-center">
             <button className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-400 hover:bg-dark-card hover:text-white transition-colors" title="Settings">
-              <Settings size={20} />
+              <FontAwesomeIcon icon={faGear} />
             </button>
           </div>
           {/* Collapsed Google Profile Avatar */}
@@ -158,11 +159,11 @@ export default function Sidebar({
   return (
     <aside className="w-60 border-r border-dark-border bg-dark-sidebar transition-all duration-300 overflow-hidden flex flex-col justify-between py-3.5 z-20 h-screen select-none font-sans">
       {/* Top Header Section */}
-      <div className="flex flex-col flex-1 overflow-hidden">
+      <div className="flex flex-col flex-1 overflow-hidden animate-fade-in">
         <div className="flex items-center justify-between px-3.5 mb-3 flex-shrink-0">
           {/* Logo Title */}
           <div className="flex items-center gap-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4.5 h-4.5 text-white animate-pulse">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4.5 h-4.5 text-white animate-pulse-slow">
               <circle cx="12" cy="12" r="6" />
               <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
             </svg>
@@ -174,7 +175,7 @@ export default function Sidebar({
             className="p-1.5 rounded-lg text-gray-400 hover:bg-dark-card hover:text-white transition-colors"
             title="Collapse sidebar"
           >
-            <SidebarIcon size={16} />
+            <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
 
@@ -185,7 +186,7 @@ export default function Sidebar({
             className="flex items-center justify-between w-full rounded-xl border border-dark-border hover:bg-dark-card px-3 py-2.5 text-xs text-white transition-all duration-200 font-medium shadow-sm hover:border-gray-500"
           >
             <span>New Chat</span>
-            <SquarePen size={15} className="text-gray-300" />
+            <FontAwesomeIcon icon={faPenToSquare} className="text-gray-300" />
           </button>
         </div>
 
@@ -204,9 +205,18 @@ export default function Sidebar({
       </div>
 
       {/* Bottom Profile Section */}
-      <div className="border-t border-dark-border pt-3 px-3 flex flex-col gap-1 flex-shrink-0">
+      <div className="border-t border-dark-border pt-3 px-3 flex flex-col gap-1 flex-shrink-0 animate-fade-in-up">
+        {/* User Stats Widget */}
+        <div className="flex items-center justify-between w-full rounded-xl bg-dark-card/50 px-3 py-2 text-xs text-gray-300 mb-2 border border-dark-border shadow-sm">
+           <div className="flex items-center gap-2">
+             <FontAwesomeIcon icon={faChartPie} className="text-indigo-400" />
+             <span className="font-medium text-white">{history.length}</span>
+             <span className="text-gray-400">Chats Total</span>
+           </div>
+        </div>
+
         <button className="flex items-center gap-3 w-full rounded-xl px-2.5 py-2 text-xs text-gray-300 hover:bg-dark-card hover:text-white transition-colors">
-          <Settings size={15} />
+          <FontAwesomeIcon icon={faGear} />
           <span>Settings</span>
         </button>
         
@@ -216,7 +226,7 @@ export default function Sidebar({
           className="flex items-center gap-3 w-full rounded-xl px-2.5 py-2 text-xs text-rose-400 hover:bg-dark-card hover:text-rose-300 transition-colors"
           title="Log out of application"
         >
-          <LogOut size={15} />
+          <FontAwesomeIcon icon={faRightFromBracket} />
           <span>Log Out</span>
         </button>
 

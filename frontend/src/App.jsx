@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import ChatBox from './components/ChatBox'
 import Login from './components/Login'
+import { Toaster } from 'react-hot-toast'
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -18,6 +19,7 @@ export default function App() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
   const [history, setHistory] = useState([])
+  const [selectedModel, setSelectedModel] = useState('cosmo-v1')
 
   // Listen for Google Auth changes and authenticate with MongoDB backend
   useEffect(() => {
@@ -147,7 +149,8 @@ export default function App() {
       const { data } = await axios.post('/chat', {
         session_id: sessionId,
         user_id: mUserId,
-        message: question
+        message: question,
+        model: selectedModel
       })
       
       setMessages((prev) => [
@@ -210,7 +213,11 @@ export default function App() {
         onLogout={handleLogout}
       />
       <div className="flex flex-1 flex-col overflow-hidden">
-        <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+        <Navbar
+          onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+          selectedModel={selectedModel}
+          onModelSelect={setSelectedModel}
+        />
         <ChatBox
           messages={messages}
           loading={loading}
@@ -218,6 +225,7 @@ export default function App() {
           user={user}
         />
       </div>
+      <Toaster position="bottom-right" toastOptions={{ duration: 3500 }} />
     </div>
   )
 }

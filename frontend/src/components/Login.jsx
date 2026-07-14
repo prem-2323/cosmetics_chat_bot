@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, googleProvider } from '../firebase'
-import { Sparkles, LogIn, Loader2 } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 export default function Login() {
   const { t } = useTranslation()
@@ -24,9 +25,9 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-[#0d0d0d] text-white p-4 select-none">
-      <div className="w-full max-w-md rounded-[28px] border border-dark-border bg-[#171717] p-8 shadow-2xl space-y-8 animate-fade-in text-center">
+      <div className="w-full max-w-md rounded-[28px] border border-dark-border bg-[#171717] p-8 shadow-2xl space-y-8 animate-fade-in-up text-center">
         {/* CosmoGPT Logo - Indigo/Emerald gradient */}
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-600 to-emerald-600 text-white shadow-xl animate-pulse">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-600 to-emerald-600 text-white shadow-xl animate-pulse-slow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-8 h-8 text-white">
             <circle cx="12" cy="12" r="6" />
             <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
@@ -61,7 +62,7 @@ export default function Login() {
 
         {/* Error message */}
         {error && (
-          <div className="text-xs text-rose-400 bg-rose-950/20 border border-rose-950/40 rounded-xl px-3 py-2">
+          <div className="text-xs text-rose-400 bg-rose-950/20 border border-rose-950/40 rounded-xl px-3 py-2 animate-fade-in">
             {error}
           </div>
         )}
@@ -70,14 +71,14 @@ export default function Login() {
         <button
           onClick={handleGoogleSignIn}
           disabled={loading}
-          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-white text-black font-semibold px-4 py-3.5 hover:bg-gray-200 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md text-sm"
+          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-white text-black font-semibold px-4 py-3.5 hover:bg-gray-200 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md text-sm group"
         >
           {loading ? (
-            <Loader2 className="animate-spin" size={20} />
+            <FontAwesomeIcon icon={faSpinner} spin className="text-xl" />
           ) : (
             <>
               {/* Simple Google SVG Icon */}
-              <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
                   d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.69c-.29 1.5-.1.8-1.5 2.4l3.19 2.47c1.86-1.7 2.93-4.22 2.93-7.2h.43z"

@@ -44,6 +44,7 @@ class ChatRequest(BaseModel):
     session_id: str
     user_id: str
     message: str
+    model: str = "cosmo-v1"
 
 class ChatResponse(BaseModel):
     answer: str
@@ -81,7 +82,7 @@ def chat(request: ChatRequest):
         
     try:
         # 1. Retrieve RAG answer using existing pipeline
-        result = answer_question(request.message)
+        result = answer_question(request.message, model=request.model)
         
         # 2. Save user message in messages collection
         save_message(

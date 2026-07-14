@@ -1,32 +1,55 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+// Lazy-evaluate SpeechRecognition to avoid issues with SSR or early module load
+function getSpeechRecognition() {
+  if (typeof window === 'undefined') return null
+  return window.SpeechRecognition || window.webkitSpeechRecognition || null
+}
 
 export default function useVoice({ onResult, lang = 'en-US', maxRetries = 3 }) {
   const [isListening, setIsListening] = useState(false)
   const [interimText, setInterimText] = useState('')
   const [error, setError] = useState(null)
+  const [supported, setSupported] = useState(false)
   const recognitionRef = useRef(null)
   const retryCountRef = useRef(0)
   const retryTimeoutRef = useRef(null)
 
-  // Keep onResult in a mutable ref to prevent stale closures and avoid recreating startListening
+  // Check support on mount (client-side only)
+  useEffect(() => {
+    setSupported(!!getSpeechRecognition())
+  }, [])
+
+  // Keep onResult in a mutable ref to prevent stale closures
   const onResultRef = useRef(onResult)
   useEffect(() => {
     onResultRef.current = onResult
   }, [onResult])
 
-  const startListening = useCallback(() => {
-    if (!SpeechRecognition) {
-      console.warn('Speech Recognition not supported in this browser')
+  const startListening = useCallback(async () => {
+    const SR = getSpeechRecognition()
+    if (!SR) {
+      console.warn('[useVoice] Speech Recognition not supported in this browser')
       return
     }
 
+    // If already running, bail out
     if (recognitionRef.current) {
       return
     }
 
-    const recognition = new SpeechRecognition()
+    // Request microphone permission explicitly first
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      // Got permission — immediately release the stream, SpeechRecognition manages its own audio
+      stream.getTracks().forEach(track => track.stop())
+    } catch (permErr) {
+      console.error('[useVoice] Microphone permission denied:', permErr)
+      setError('not-allowed')
+      return
+    }
+
+    const recognition = new SR()
     recognition.continuous = true
     recognition.interimResults = true
     recognition.lang = lang
@@ -55,7 +78,7 @@ export default function useVoice({ onResult, lang = 'en-US', maxRetries = 3 }) {
     }
 
     recognition.onerror = (event) => {
-      console.error('Speech recognition error:', event.error)
+      console.error('[useVoice] Speech recognition error:', event.error)
       setError(event.error)
       setIsListening(false)
       setInterimText('')
@@ -64,7 +87,6 @@ export default function useVoice({ onResult, lang = 'en-US', maxRetries = 3 }) {
       if (event.error === 'network' && retryCountRef.current < maxRetries) {
         retryCountRef.current++
         const delay = Math.min(1000 * 2 ** retryCountRef.current, 10000)
-        console.log(`Retrying speech recognition in ${delay}ms (attempt ${retryCountRef.current}/${maxRetries})`)
         retryTimeoutRef.current = setTimeout(() => startListening(), delay)
       } else {
         retryCountRef.current = 0
@@ -81,18 +103,18 @@ export default function useVoice({ onResult, lang = 'en-US', maxRetries = 3 }) {
     try {
       recognition.start()
     } catch (e) {
-      console.error('Failed to start speech recognition:', e)
+      console.error('[useVoice] Failed to start speech recognition:', e)
       setIsListening(false)
       recognitionRef.current = null
     }
-  }, [lang])
+  }, [lang, maxRetries])
 
   const stopListening = useCallback(() => {
     if (recognitionRef.current) {
       try {
         recognitionRef.current.stop()
       } catch (e) {
-        console.error('Failed to stop speech recognition:', e)
+        // ignore
       }
       recognitionRef.current = null
     }
@@ -126,6 +148,5 @@ export default function useVoice({ onResult, lang = 'en-US', maxRetries = 3 }) {
 
   const clearError = useCallback(() => setError(null), [])
 
-  return { isListening, interimText, startListening, stopListening, toggleListening, supported: !!SpeechRecognition, error, clearError }
+  return { isListening, interimText, startListening, stopListening, toggleListening, supported, error, clearError }
 }
-

@@ -1,4 +1,5 @@
-import { Sparkles, Volume2, VolumeX } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
 import SourceCard from './SourceCard'
 import TypingAnimation from './TypingAnimation'
@@ -59,7 +60,7 @@ export default function Message({ role, content, sources, isTyping, user }) {
       <div className="py-6 border-b border-dark-border/10">
         <div className="mx-auto max-w-3xl flex items-start gap-4 w-full px-4">
           {/* CosmoGPT Logo - Emerald Green */}
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white shadow-md flex-shrink-0">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white shadow-md flex-shrink-0 animate-pulse-slow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4.5 h-4.5 text-white">
               <circle cx="12" cy="12" r="6" />
               <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
@@ -78,7 +79,7 @@ export default function Message({ role, content, sources, isTyping, user }) {
   // User message bubble (ChatGPT-style right aligned grey pill)
   if (isUser) {
     return (
-      <div className="py-4">
+      <div className="py-4 animate-slide-in">
         <div className="mx-auto max-w-3xl flex justify-end w-full px-4">
           <div className="bg-dark-card text-white rounded-[24px] rounded-br-lg px-5 py-2.5 max-w-[70%] text-sm shadow-sm leading-relaxed border border-dark-border/40">
             {content}
@@ -90,7 +91,7 @@ export default function Message({ role, content, sources, isTyping, user }) {
 
   // Assistant message bubble
   return (
-    <div className="py-6 border-b border-dark-border/10">
+    <div className="py-6 border-b border-dark-border/10 animate-fade-in-up">
       <div className="mx-auto max-w-3xl flex items-start gap-4 w-full px-4">
         
         {/* CosmoGPT Logo - Emerald Green */}
@@ -113,7 +114,7 @@ export default function Message({ role, content, sources, isTyping, user }) {
               className="mt-3 flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors"
               title={isSpeaking ? t('chat.stopReading') : t('chat.readAloud')}
             >
-              {isSpeaking ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              {isSpeaking ? <FontAwesomeIcon icon={faVolumeXmark} /> : <FontAwesomeIcon icon={faVolumeHigh} />}
               <span className="text-[11px] font-medium">{isSpeaking ? t('chat.stopReading') : t('chat.readAloud')}</span>
             </button>
           </div>

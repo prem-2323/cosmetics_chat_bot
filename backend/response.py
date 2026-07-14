@@ -23,7 +23,29 @@ def _ensure_loaded():
             _docs = json.load(f)
     return _model, _index, _docs
 
-def build_response(docs):
+MODEL_CONFIGS = {
+    "cosmo-v1": {
+        "k": 5,
+        "max_benefits": 3,
+        "include_usage": True,
+        "style": "standard",
+    },
+    "cosmo-pro": {
+        "k": 10,
+        "max_benefits": 5,
+        "include_usage": True,
+        "style": "detailed",
+    },
+    "minilm": {
+        "k": 3,
+        "max_benefits": 1,
+        "include_usage": False,
+        "style": "concise",
+    },
+}
+
+
+def build_response(docs, style="standard", max_benefits=3, include_usage=True):
     categories = {}
     for doc in docs:
         cat = doc.get("category", "General")
@@ -37,26 +59,50 @@ def build_response(docs):
             desc = item.get("description", "")
             benefits = item.get("benefits", [])
             usage = item.get("usage", "")
-            lines.append(f"• **{title}** — {desc}")
-            if benefits:
-                lines.append("  Benefits: " + ", ".join(benefits[:3]))
-            if usage:
-                lines.append(f"  Usage: {usage}")
+
+            if style == "detailed":
+                lines.append(f"• **{title}** — {desc}")
+                if benefits:
+                    lines.append("  *Benefits:* " + ", ".join(benefits[:max_benefits]))
+                if include_usage and usage:
+                    lines.append(f"  *How to use:* {usage}")
+                ingredients = item.get("ingredients", [])
+                if ingredients:
+                    lines.append("  *Key ingredients:* " + ", ".join(ingredients[:5]))
+            elif style == "concise":
+                lines.append(f"• **{title}** — {desc}")
+                if benefits:
+                    lines.append("  " + ", ".join(benefits[:max_benefits]))
+            else:
+                lines.append(f"• **{title}** — {desc}")
+                if benefits:
+                    lines.append("  Benefits: " + ", ".join(benefits[:max_benefits]))
+                if include_usage and usage:
+                    lines.append(f"  Usage: {usage}")
         lines.append("")
 
     return "\n".join(lines).strip()
 
-def answer_question(question, k=5):
-    model, index, docs = _ensure_loaded()
-    query_emb = model.encode(question, convert_to_numpy=True)
-    distances, indices = index.search(query_emb.reshape(1, -1), k)
+
+def answer_question(question, model="cosmo-v1"):
+    cfg = MODEL_CONFIGS.get(model, MODEL_CONFIGS["cosmo-v1"])
+
+    model_instance, index, docs = _ensure_loaded()
+    query_emb = model_instance.encode(question, convert_to_numpy=True)
+    distances, indices = index.search(query_emb.reshape(1, -1), cfg["k"])
     retrieved = [docs[idx] for idx in indices[0]]
-    answer = build_response(retrieved)
+    answer = build_response(
+        retrieved,
+        style=cfg["style"],
+        max_benefits=cfg["max_benefits"],
+        include_usage=cfg["include_usage"],
+    )
     sources = [doc["title"] for doc in retrieved]
     return {
         "answer": answer,
         "sources": sources,
     }
+
 
 if __name__ == "__main__":
     while True:
