@@ -10,7 +10,19 @@ from database import (
     delete_conversation
 )
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="CosmoGPT API", version="1.0.0")
+
+# Enable CORS for cross-domain requests (Vercel frontend calling Render backend)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can restrict this to your Vercel domain once deployed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # API Pydantic models
 class LoginRequest(BaseModel):
