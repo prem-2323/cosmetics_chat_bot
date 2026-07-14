@@ -1,6 +1,8 @@
-import { Sparkles } from 'lucide-react'
+import { Sparkles, Volume2, VolumeX } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import SourceCard from './SourceCard'
 import TypingAnimation from './TypingAnimation'
+import useSpeech from '../hooks/useSpeech'
 
 // Simple robust markdown parser for bold, inline code, and lists
 function parseMarkdown(text) {
@@ -16,7 +18,7 @@ function parseMarkdown(text) {
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
 
   // Inline code: `code`
-  html = html.replace(/`(.*?)`/g, '<code class="bg-[#2f2f2f] px-1.5 py-0.5 rounded text-purple-400 font-mono text-xs">$1</code>')
+  html = html.replace(/`(.*?)`/g, '<code class="bg-dark-card/60 px-1.5 py-0.5 rounded text-gray-200 font-mono text-[12px] border border-white/5">$1</code>')
 
   // Split by line to process bullet points and lists
   const lines = html.split('\n')
@@ -46,14 +48,26 @@ function parseMarkdown(text) {
 }
 
 export default function Message({ role, content, sources, isTyping, user }) {
+  const { t, i18n } = useTranslation()
+  const { isSpeaking, toggle } = useSpeech()
+
+  const speechLangMap = { en: 'en-US', fr: 'fr-FR', es: 'es-ES', de: 'de-DE', hi: 'hi-IN', zh: 'zh-CN', ja: 'ja-JP' }
+  const currentSpeechLang = speechLangMap[i18n.language] || 'en-US'
+
   if (isTyping) {
     return (
-      <div className="flex items-start gap-4 py-4 max-w-3xl mx-auto w-full">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 text-white shadow-md flex-shrink-0 animate-spin">
-          <Sparkles size={16} />
-        </div>
-        <div className="flex-1 mt-1">
-          <TypingAnimation />
+      <div className="py-6 border-b border-dark-border/10">
+        <div className="mx-auto max-w-3xl flex items-start gap-4 w-full px-4">
+          {/* CosmoGPT Logo - Emerald Green */}
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white shadow-md flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4.5 h-4.5 text-white">
+              <circle cx="12" cy="12" r="6" />
+              <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
+            </svg>
+          </div>
+          <div className="flex-1 mt-1">
+            <TypingAnimation />
+          </div>
         </div>
       </div>
     )
@@ -61,50 +75,53 @@ export default function Message({ role, content, sources, isTyping, user }) {
 
   const isUser = role === 'user'
 
-  return (
-    <div className={`py-6 border-b border-dark-border/20 ${isUser ? 'bg-transparent' : 'bg-transparent'}`}>
-      <div className={`mx-auto max-w-3xl flex items-start gap-4 w-full px-4 ${isUser ? 'flex-row-reverse' : ''}`}>
-        
-        {/* Avatar */}
-        {!isUser ? (
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-md flex-shrink-0">
-            <Sparkles size={16} />
+  // User message bubble (ChatGPT-style right aligned grey pill)
+  if (isUser) {
+    return (
+      <div className="py-4">
+        <div className="mx-auto max-w-3xl flex justify-end w-full px-4">
+          <div className="bg-dark-card text-white rounded-[24px] rounded-br-lg px-5 py-2.5 max-w-[70%] text-sm shadow-sm leading-relaxed border border-dark-border/40">
+            {content}
           </div>
-        ) : (
-          user?.photoURL ? (
-            <img
-              src={user.photoURL}
-              alt="Avatar"
-              className="h-8 w-8 rounded-full border border-purple-500 shadow-md flex-shrink-0"
-            />
-          ) : (
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 text-white font-bold text-xs shadow-sm flex-shrink-0">
-              {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : 'U'}
-            </div>
-          )
-        )}
+        </div>
+      </div>
+    )
+  }
+
+  // Assistant message bubble
+  return (
+    <div className="py-6 border-b border-dark-border/10">
+      <div className="mx-auto max-w-3xl flex items-start gap-4 w-full px-4">
+        
+        {/* CosmoGPT Logo - Emerald Green */}
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white shadow-md flex-shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4.5 h-4.5 text-white">
+            <circle cx="12" cy="12" r="6" />
+            <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
+          </svg>
+        </div>
 
         {/* Message body */}
         <div className="flex-1 space-y-3 overflow-hidden">
-          {isUser ? (
-            <div className="flex justify-end">
-              <div className="bg-[#2f2f2f] text-white rounded-2xl px-4 py-2.5 max-w-[85%] text-sm shadow-md leading-relaxed">
-                {content}
-              </div>
-            </div>
-          ) : (
-            <div className="prose prose-invert max-w-none">
-              <div
-                dangerouslySetInnerHTML={{ __html: parseMarkdown(content) }}
-                className="text-gray-200 leading-relaxed text-sm"
-              />
-            </div>
-          )}
+          <div className="prose prose-invert max-w-none">
+            <div
+              dangerouslySetInnerHTML={{ __html: parseMarkdown(content) }}
+              className="text-gray-200 leading-relaxed text-sm"
+            />
+            <button
+              onClick={() => toggle(content, currentSpeechLang)}
+              className="mt-3 flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              title={isSpeaking ? t('chat.stopReading') : t('chat.readAloud')}
+            >
+              {isSpeaking ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              <span className="text-[11px] font-medium">{isSpeaking ? t('chat.stopReading') : t('chat.readAloud')}</span>
+            </button>
+          </div>
 
           {/* Sources */}
-          {!isUser && sources && sources.length > 0 && (
+          {sources && sources.length > 0 && (
             <div className="mt-4 pt-3 border-t border-dark-border/40 space-y-2">
-              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider select-none">
                 Sources & References
               </span>
               <div className="flex flex-wrap gap-2">
@@ -120,3 +137,4 @@ export default function Message({ role, content, sources, isTyping, user }) {
     </div>
   )
 }
+

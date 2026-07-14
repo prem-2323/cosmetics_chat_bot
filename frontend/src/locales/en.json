@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "CosmoGPT",
+    "loading": "Loading CosmoGPT..."
+  },
+  "sidebar": {
+    "newChat": "New Chat",
+    "settings": "Settings",
+    "logOut": "Log Out",
+    "today": "Today's Chats",
+    "yesterday": "Yesterday",
+    "previousDays": "Previous Days",
+    "noConversations": "No recent conversations",
+    "search": "Search",
+    "chatHistory": "Chat History",
+    "expandSidebar": "Expand Sidebar",
+    "collapseSidebar": "Collapse sidebar",
+    "deleteChat": "Delete chat"
+  },
+  "chat": {
+    "welcome": "Where should we begin?",
+    "placeholder": "Ask anything",
+    "send": "Send message",
+    "attachFiles": "Attach files",
+    "voiceInput": "Voice input",
+    "voiceMode": "Voice mode",
+    "quickAction1": "Create a custom skincare routine",
+    "quickAction2": "Analyze ingredient safety & side effects",
+    "quickAction3": "Find cosmetics recommendations for oily skin",
+    "sources": "Sources & References",
+    "readAloud": "Read aloud",
+    "stopReading": "Stop",
+    "error": "Sorry, something went wrong. Please try again."
+  },
+  "navbar": {
+    "selectModel": "Select Model",
+    "fullScreen": "Full screen",
+    "moreOptions": "More options",
+    "language": "Language"
+  },
+  "footer": {
+    "disclaimer": "CosmoGPT can make mistakes. Verify important skincare or medical advice."
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "hi": "हिन्दी"
+  },
+  "models": {
+    "cosmoV1": "CosmoGPT v1.0",
+    "cosmoV1Desc": "Default cosmetics RAG bot, fast & accurate.",
+    "cosmoPro": "CosmoGPT Pro",
+    "cosmoProDesc": "Deep-diving formulation & safety analysis.",
+    "miniLM": "MiniLM-L6-v2",
+    "miniLMDesc": "Fast embedding retrieval."
+  }
+}

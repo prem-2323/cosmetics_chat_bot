@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "CosmoGPT",
+    "loading": "CosmoGPT लोड हो रहा है..."
+  },
+  "sidebar": {
+    "newChat": "नई चैट",
+    "settings": "सेटिंग्स",
+    "logOut": "लॉग आउट",
+    "today": "आज",
+    "yesterday": "कल",
+    "previousDays": "पिछले दिन",
+    "noConversations": "कोई हाल की बातचीत नहीं",
+    "search": "खोजें",
+    "chatHistory": "इतिहास",
+    "expandSidebar": "साइडबार बढ़ाएँ",
+    "collapseSidebar": "साइडबार छिपाएँ",
+    "deleteChat": "हटाएँ"
+  },
+  "chat": {
+    "welcome": "हम कहाँ से शुरू करें?",
+    "placeholder": "कुछ भी पूछें",
+    "send": "संदेश भेजें",
+    "attachFiles": "फ़ाइलें संलग्न करें",
+    "voiceInput": "वॉइस इनपुट",
+    "voiceMode": "वॉइस मोड",
+    "quickAction1": "कस्टम स्किनकेयर रूटीन बनाएँ",
+    "quickAction2": "सामग्री सुरक्षा का विश्लेषण करें",
+    "quickAction3": "तैलीय त्वचा के लिए सिफारिशें",
+    "sources": "स्रोत और संदर्भ",
+    "readAloud": "पढ़कर सुनाएँ",
+    "stopReading": "रोकें",
+    "error": "क्षमा करें, कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
+  },
+  "navbar": {
+    "selectModel": "मॉडल चुनें",
+    "fullScreen": "पूर्ण स्क्रीन",
+    "moreOptions": "और विकल्प",
+    "language": "भाषा"
+  },
+  "footer": {
+    "disclaimer": "CosmoGPT गलतियाँ कर सकता है। महत्वपूर्ण सलाह की पुष्टि करें।"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "hi": "हिन्दी"
+  },
+  "models": {
+    "cosmoV1": "CosmoGPT v1.0",
+    "cosmoV1Desc": "डिफ़ॉल्ट कॉस्मेटिक्स RAG बॉट, तेज़ और सटीक।",
+    "cosmoPro": "CosmoGPT Pro",
+    "cosmoProDesc": "गहन फॉर्मूलेशन और सुरक्षा विश्लेषण।",
+    "miniLM": "MiniLM-L6-v2",
+    "miniLMDesc": "तेज़ एम्बेडिंग पुनर्प्राप्ति।"
+  }
+}

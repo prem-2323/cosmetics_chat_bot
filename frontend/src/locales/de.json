@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "CosmoGPT",
+    "loading": "CosmoGPT wird geladen..."
+  },
+  "sidebar": {
+    "newChat": "Neuer Chat",
+    "settings": "Einstellungen",
+    "logOut": "Abmelden",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "previousDays": "Vorherige Tage",
+    "noConversations": "Keine aktuellen Gespräche",
+    "search": "Suchen",
+    "chatHistory": "Verlauf",
+    "expandSidebar": "Seitenleiste erweitern",
+    "collapseSidebar": "Seitenleiste einklappen",
+    "deleteChat": "Löschen"
+  },
+  "chat": {
+    "welcome": "Wo sollen wir anfangen?",
+    "placeholder": "Fragen Sie alles",
+    "send": "Nachricht senden",
+    "attachFiles": "Dateien anhängen",
+    "voiceInput": "Spracheingabe",
+    "voiceMode": "Sprachmodus",
+    "quickAction1": "Personalisierte Hautpflegeroutine erstellen",
+    "quickAction2": "Inhaltsstoffsicherheit analysieren",
+    "quickAction3": "Empfehlungen für fettige Haut",
+    "sources": "Quellen und Referenzen",
+    "readAloud": "Vorlesen",
+    "stopReading": "Stopp",
+    "error": "Entschuldigung, etwas ist schiefgelaufen."
+  },
+  "navbar": {
+    "selectModel": "Modell auswählen",
+    "fullScreen": "Vollbild",
+    "moreOptions": "Weitere Optionen",
+    "language": "Sprache"
+  },
+  "footer": {
+    "disclaimer": "CosmoGPT kann Fehler machen. Überprüfen Sie wichtige Ratschläge."
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "hi": "हिन्दी"
+  },
+  "models": {
+    "cosmoV1": "CosmoGPT v1.0",
+    "cosmoV1Desc": "Standard-Kosmetik-RAG-Bot, schnell und genau.",
+    "cosmoPro": "CosmoGPT Pro",
+    "cosmoProDesc": "Tiefgehende Formulierungsanalyse.",
+    "miniLM": "MiniLM-L6-v2",
+    "miniLMDesc": "Schnelle Embedding-Suche."
+  }
+}

@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, googleProvider } from '../firebase'
 import { Sparkles, LogIn, Loader2 } from 'lucide-react'
 
 export default function Login() {
+  const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -22,15 +24,18 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-[#0d0d0d] text-white p-4 select-none">
-      <div className="w-full max-w-md rounded-3xl border border-dark-border bg-[#171717] p-8 shadow-2xl space-y-8 animate-fade-in text-center">
-        {/* Sparkle Logo */}
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-xl animate-pulse">
-          <Sparkles size={32} />
+      <div className="w-full max-w-md rounded-[28px] border border-dark-border bg-[#171717] p-8 shadow-2xl space-y-8 animate-fade-in text-center">
+        {/* CosmoGPT Logo - Indigo/Emerald gradient */}
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-600 to-emerald-600 text-white shadow-xl animate-pulse">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-8 h-8 text-white">
+            <circle cx="12" cy="12" r="6" />
+            <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
+          </svg>
         </div>
 
         {/* Title */}
         <div className="space-y-2">
-          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
             Welcome to CosmoGPT
           </h1>
           <p className="text-sm text-gray-400">
@@ -39,24 +44,24 @@ export default function Login() {
         </div>
 
         {/* Description / Feature Highlights */}
-        <div className="rounded-2xl bg-[#212121]/50 p-4 text-xs text-gray-400 text-left space-y-2.5 border border-dark-border/60">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+        <div className="rounded-2xl bg-dark-card/30 p-5 text-xs text-gray-300 text-left space-y-3.5 border border-dark-border">
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-indigo-500 shadow-sm" />
             <span>Formulation & Ingredient analysis</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-sm" />
             <span>Product safety & rating lookups</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-pink-400" />
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-teal-500 shadow-sm" />
             <span>Custom skincare routines in real time</span>
           </div>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="text-xs text-rose-400 bg-rose-950/20 border border-rose-950/60 rounded-xl px-3 py-2">
+          <div className="text-xs text-rose-400 bg-rose-950/20 border border-rose-950/40 rounded-xl px-3 py-2">
             {error}
           </div>
         )}
@@ -65,7 +70,7 @@ export default function Login() {
         <button
           onClick={handleGoogleSignIn}
           disabled={loading}
-          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-white text-black font-semibold px-4 py-3.5 hover:bg-gray-200 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-white text-black font-semibold px-4 py-3.5 hover:bg-gray-200 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md text-sm"
         >
           {loading ? (
             <Loader2 className="animate-spin" size={20} />

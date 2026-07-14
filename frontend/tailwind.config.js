@@ -6,11 +6,11 @@ export default {
     extend: {
       colors: {
         dark: {
-          bg: '#0d0d0d',
-          sidebar: '#000000',
-          card: '#212121',
-          border: '#2f2f2f',
-          input: '#212121',
+          bg: '#212121',
+          sidebar: '#171717',
+          card: '#2f2f2f',
+          border: 'rgba(255, 255, 255, 0.08)',
+          input: '#2f2f2f',
         },
         primary: {
           DEFAULT: '#ffffff',

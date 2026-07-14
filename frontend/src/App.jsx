@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from './firebase'
@@ -33,9 +34,14 @@ export default function App() {
           })
           setMongoUserId(data.user_id)
           // Load past sessions from MongoDB
-          await fetchHistory(data.user_id)
-          // Initiate a fresh chat session for this login
-          await initiateNewChat(data.user_id)
+          const sessionHistory = await fetchHistory(data.user_id)
+          // If there is an existing session, load the most recent one
+          if (sessionHistory && sessionHistory.length > 0) {
+            await loadSession(sessionHistory[0].session_id)
+          } else {
+            // Otherwise, start a fresh new session
+            await initiateNewChat(data.user_id)
+          }
         } catch (err) {
           console.error('Error logging in user to backend MongoDB:', err)
         }
@@ -53,12 +59,14 @@ export default function App() {
   // Fetch session history for the current MongoDB user_id
   const fetchHistory = async (mUserId) => {
     const uid = mUserId || mongoUserId
-    if (!uid) return
+    if (!uid) return []
     try {
       const { data } = await axios.get(`/history?user_id=${uid}`)
       setHistory(data)
+      return data
     } catch (err) {
       console.error('Error fetching history:', err)
+      return []
     }
   }
 
@@ -66,6 +74,12 @@ export default function App() {
   const initiateNewChat = async (mUserId) => {
     const uid = mUserId || mongoUserId
     if (!uid) return
+
+    // If the current chat is already empty, do not spawn another empty session
+    if (currentSessionId && messages.length === 0) {
+      return
+    }
+
     try {
       const { data } = await axios.post('/chat/new', { user_id: uid })
       setCurrentSessionId(data.session_id)
@@ -165,12 +179,14 @@ export default function App() {
     }
   }
 
+  const { t } = useTranslation()
+
   if (authChecking) {
     return (
       <div className="flex h-screen w-screen items-center justify-center bg-[#0d0d0d] text-white">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-t-purple-500 border-r-transparent border-b-purple-500 border-l-transparent" />
-          <span className="text-sm text-gray-400">Loading CosmoGPT...</span>
+          <span className="text-sm text-gray-400">{t('app.loading')}</span>
         </div>
       </div>
     )
@@ -199,6 +215,7 @@ export default function App() {
           messages={messages}
           loading={loading}
           onSend={handleSend}
+          user={user}
         />
       </div>
     </div>

@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "CosmoGPT",
+    "loading": "Cargando CosmoGPT..."
+  },
+  "sidebar": {
+    "newChat": "Nuevo chat",
+    "settings": "Ajustes",
+    "logOut": "Cerrar sesión",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "previousDays": "Días anteriores",
+    "noConversations": "Sin conversaciones recientes",
+    "search": "Buscar",
+    "chatHistory": "Historial",
+    "expandSidebar": "Expandir panel",
+    "collapseSidebar": "Contraer panel",
+    "deleteChat": "Eliminar"
+  },
+  "chat": {
+    "welcome": "¿Por dónde le gustaría empezar?",
+    "placeholder": "Pregunte lo que sea",
+    "send": "Enviar mensaje",
+    "attachFiles": "Adjuntar archivos",
+    "voiceInput": "Entrada de voz",
+    "voiceMode": "Modo voz",
+    "quickAction1": "Crear rutina de cuidado personalizada",
+    "quickAction2": "Analizar seguridad de ingredientes",
+    "quickAction3": "Recomendaciones para piel grasa",
+    "sources": "Fuentes y referencias",
+    "readAloud": "Leer en voz alta",
+    "stopReading": "Detener",
+    "error": "Lo siento, algo salió mal. Intente de nuevo."
+  },
+  "navbar": {
+    "selectModel": "Seleccionar modelo",
+    "fullScreen": "Pantalla completa",
+    "moreOptions": "Más opciones",
+    "language": "Idioma"
+  },
+  "footer": {
+    "disclaimer": "CosmoGPT puede cometer errores. Verifique consejos importantes."
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "hi": "हिन्दी"
+  },
+  "models": {
+    "cosmoV1": "CosmoGPT v1.0",
+    "cosmoV1Desc": "Bot RAG de cosméticos predeterminado.",
+    "cosmoPro": "CosmoGPT Pro",
+    "cosmoProDesc": "Análisis profundo de formulaciones.",
+    "miniLM": "MiniLM-L6-v2",
+    "miniLMDesc": "Recuperación rápida por embedding."
+  }
+}

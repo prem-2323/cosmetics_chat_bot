@@ -44,7 +44,7 @@ export default function Sidebar({
   const renderGroup = (title, items) => {
     if (items.length === 0) return null
     return (
-      <div className="space-y-1">
+      <div className="space-y-1 mt-4">
         <h3 className="px-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider select-none">
           {title}
         </h3>
@@ -54,9 +54,9 @@ export default function Sidebar({
             return (
               <div
                 key={session.session_id}
-                className={`group relative flex items-center justify-between rounded-lg px-3 py-2 text-xs transition-colors cursor-pointer ${
+                className={`group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-dark-card text-white font-medium'
+                    ? 'bg-dark-card text-white font-medium shadow-sm'
                     : 'text-gray-300 hover:bg-dark-card hover:text-white'
                 }`}
                 onClick={() => onSelectSession(session.session_id)}
@@ -72,7 +72,7 @@ export default function Sidebar({
                     e.stopPropagation()
                     if (onDeleteSession) onDeleteSession(session.session_id)
                   }}
-                  className="absolute right-2 opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-[#2f2f2f] text-gray-400 hover:text-red-400 transition-opacity"
+                  className="absolute right-2 opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-[#383838] text-gray-400 hover:text-rose-400 transition-opacity"
                   title="Delete chat"
                 >
                   <Trash2 size={13} />
@@ -90,30 +90,15 @@ export default function Sidebar({
     return (
       <aside className="w-[60px] border-r border-dark-border bg-dark-sidebar transition-all duration-300 overflow-hidden flex flex-col items-center justify-between py-4 z-20">
         <div className="flex flex-col items-center gap-6 w-full">
-          {/* Custom Logo */}
+          {/* Brand Logo - Orbital rings planet */}
           <div
             onClick={onToggle}
             className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-dark-card cursor-pointer transition-colors text-white"
             title="Expand Sidebar"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="w-6 h-6 animate-pulse"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.813 15.904L9 21L14.907 18.062M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 10.5C19.5 15.4706 15.4706 19.5 10.5 19.5"
-              />
-              <circle cx="10.5" cy="10.5" r="3.5" strokeWidth="2" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-5 h-5 text-white animate-pulse">
+              <circle cx="12" cy="12" r="6" />
+              <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
             </svg>
           </div>
 
@@ -152,13 +137,13 @@ export default function Sidebar({
               src={user.photoURL}
               alt="Avatar"
               onClick={onLogout}
-              className="h-8 w-8 rounded-full border border-purple-500 shadow-md cursor-pointer hover:scale-105 transition-transform"
+              className="h-8 w-8 rounded-full border border-dark-border shadow-md cursor-pointer hover:scale-105 transition-transform"
               title="Log Out"
             />
           ) : (
             <div
               onClick={onLogout}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 text-white font-bold text-xs border border-purple-500 cursor-pointer"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white font-bold text-xs border border-dark-border cursor-pointer shadow-md"
               title="Log Out"
             >
               {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : 'U'}
@@ -171,21 +156,15 @@ export default function Sidebar({
 
   // EXPANDED MODE (Full Panel)
   return (
-    <aside className="w-60 border-r border-dark-border bg-[#171717] transition-all duration-300 overflow-hidden flex flex-col justify-between py-3.5 z-20 h-screen select-none font-sans">
+    <aside className="w-60 border-r border-dark-border bg-dark-sidebar transition-all duration-300 overflow-hidden flex flex-col justify-between py-3.5 z-20 h-screen select-none font-sans">
       {/* Top Header Section */}
       <div className="flex flex-col flex-1 overflow-hidden">
         <div className="flex items-center justify-between px-3.5 mb-3 flex-shrink-0">
           {/* Logo Title */}
           <div className="flex items-center gap-2">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="w-5 h-5 text-white animate-pulse"
-            >
-              <circle cx="10.5" cy="10.5" r="3.5" strokeWidth="2" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5C19.5 15.4706 15.4706 19.5 10.5 19.5" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4.5 h-4.5 text-white animate-pulse">
+              <circle cx="12" cy="12" r="6" />
+              <path d="M3.5 12c0-2 4.25-4 8.5-4s8.5 2 8.5 4-4.25 4-8.5 4-8.5-2-8.5-4z" />
             </svg>
             <span className="text-sm font-semibold text-white tracking-wide">CosmoGPT</span>
           </div>
@@ -200,10 +179,10 @@ export default function Sidebar({
         </div>
 
         {/* New Chat Button */}
-        <div className="px-3 mb-4 flex-shrink-0">
+        <div className="px-3 mb-2 flex-shrink-0">
           <button
             onClick={onNewChat}
-            className="flex items-center justify-between w-full rounded-lg border border-dark-border hover:bg-dark-card px-3 py-2.5 text-xs text-white transition-colors font-medium shadow-sm hover:border-gray-500"
+            className="flex items-center justify-between w-full rounded-xl border border-dark-border hover:bg-dark-card px-3 py-2.5 text-xs text-white transition-all duration-200 font-medium shadow-sm hover:border-gray-500"
           >
             <span>New Chat</span>
             <SquarePen size={15} className="text-gray-300" />
@@ -211,7 +190,7 @@ export default function Sidebar({
         </div>
 
         {/* Chat History Sessions (Scrollable) */}
-        <div className="flex-1 overflow-y-auto px-1.5 space-y-5 pb-4">
+        <div className="flex-1 overflow-y-auto px-1.5 space-y-4 pb-4">
           {renderGroup("Today's Chats", grouped.today)}
           {renderGroup("Yesterday", grouped.yesterday)}
           {renderGroup("Previous Days", grouped.older)}
@@ -225,8 +204,8 @@ export default function Sidebar({
       </div>
 
       {/* Bottom Profile Section */}
-      <div className="border-t border-dark-border/40 pt-3 px-3 flex flex-col gap-1.5 flex-shrink-0">
-        <button className="flex items-center gap-3 w-full rounded-lg px-2 py-1.5 text-xs text-gray-300 hover:bg-dark-card hover:text-white transition-colors">
+      <div className="border-t border-dark-border pt-3 px-3 flex flex-col gap-1 flex-shrink-0">
+        <button className="flex items-center gap-3 w-full rounded-xl px-2.5 py-2 text-xs text-gray-300 hover:bg-dark-card hover:text-white transition-colors">
           <Settings size={15} />
           <span>Settings</span>
         </button>
@@ -234,7 +213,7 @@ export default function Sidebar({
         {/* Logout Button */}
         <button
           onClick={onLogout}
-          className="flex items-center gap-3 w-full rounded-lg px-2 py-1.5 text-xs text-rose-400 hover:bg-dark-card hover:text-rose-300 transition-colors"
+          className="flex items-center gap-3 w-full rounded-xl px-2.5 py-2 text-xs text-rose-400 hover:bg-dark-card hover:text-rose-300 transition-colors"
           title="Log out of application"
         >
           <LogOut size={15} />
@@ -242,16 +221,16 @@ export default function Sidebar({
         </button>
 
         {/* Profile Card */}
-        <div className="flex items-center justify-between w-full rounded-lg px-2 py-2 text-xs text-gray-300 hover:bg-dark-card hover:text-white transition-colors cursor-pointer mt-1">
+        <div className="flex items-center justify-between w-full rounded-xl px-2 py-2 text-xs text-gray-300 hover:bg-dark-card hover:text-white transition-colors cursor-pointer mt-1">
           <div className="flex items-center gap-3 truncate">
             {user?.photoURL ? (
               <img
                 src={user.photoURL}
                 alt="Avatar"
-                className="h-7 w-7 rounded-full border border-purple-500 shadow-md flex-shrink-0"
+                className="h-7.5 w-7.5 rounded-full border border-dark-border shadow-md flex-shrink-0"
               />
             ) : (
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-purple-700 text-white font-bold text-[10px] border border-purple-500 shadow-md">
+              <div className="flex h-7.5 w-7.5 items-center justify-center rounded-full bg-indigo-600 text-white font-bold text-[10px] border border-dark-border shadow-md">
                 {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : 'U'}
               </div>
             )}
@@ -265,3 +244,4 @@ export default function Sidebar({
     </aside>
   )
 }
+

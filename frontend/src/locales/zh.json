@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "CosmoGPT",
+    "loading": "正在加载 CosmoGPT..."
+  },
+  "sidebar": {
+    "newChat": "新建对话",
+    "settings": "设置",
+    "logOut": "退出登录",
+    "today": "今天",
+    "yesterday": "昨天",
+    "previousDays": "更早",
+    "noConversations": "暂无最近的对话",
+    "search": "搜索",
+    "chatHistory": "历史记录",
+    "expandSidebar": "展开侧边栏",
+    "collapseSidebar": "收起侧边栏",
+    "deleteChat": "删除"
+  },
+  "chat": {
+    "welcome": "我们从哪里开始？",
+    "placeholder": "提出您的问题",
+    "send": "发送消息",
+    "attachFiles": "附加文件",
+    "voiceInput": "语音输入",
+    "voiceMode": "语音模式",
+    "quickAction1": "创建定制护肤流程",
+    "quickAction2": "分析成分安全性",
+    "quickAction3": "油性肌肤产品推荐",
+    "sources": "来源与参考",
+    "readAloud": "朗读",
+    "stopReading": "停止",
+    "error": "抱歉，出了点问题。请重试。"
+  },
+  "navbar": {
+    "selectModel": "选择模型",
+    "fullScreen": "全屏",
+    "moreOptions": "更多选项",
+    "language": "语言"
+  },
+  "footer": {
+    "disclaimer": "CosmoGPT 可能会犯错。请核实重要的护肤或医疗建议。"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "hi": "हिन्दी"
+  },
+  "models": {
+    "cosmoV1": "CosmoGPT v1.0",
+    "cosmoV1Desc": "默认化妆品 RAG 机器人，快速准确。",
+    "cosmoPro": "CosmoGPT Pro",
+    "cosmoProDesc": "深入配方与安全分析。",
+    "miniLM": "MiniLM-L6-v2",
+    "miniLMDesc": "快速嵌入检索。"
+  }
+}

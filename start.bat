@@ -16,8 +16,13 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-:: Wait for backend to initialize
-timeout /t 4 /nobreak >nul
+:: Wait for backend to be ready (poll health endpoint)
+echo [1/2] Waiting for backend to be ready...
+:poll
+timeout /t 1 /nobreak >nul
+powershell -Command "try { $r = Invoke-WebRequest -Uri 'http://127.0.0.1:8001/' -UseBasicParsing -TimeoutSec 2; exit 0 } catch { exit 1 }" >nul 2>&1
+if errorlevel 1 goto poll
+echo [1/2] Backend is ready!
 
 :: Start Frontend
 echo [2/2] Starting Frontend (port 5173)...

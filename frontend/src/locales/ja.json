@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "CosmoGPT",
+    "loading": "CosmoGPTを読み込み中..."
+  },
+  "sidebar": {
+    "newChat": "新しいチャット",
+    "settings": "設定",
+    "logOut": "ログアウト",
+    "today": "今日",
+    "yesterday": "昨日",
+    "previousDays": "過去",
+    "noConversations": "最近の会話はありません",
+    "search": "検索",
+    "chatHistory": "履歴",
+    "expandSidebar": "サイドバーを展開",
+    "collapseSidebar": "サイドバーを折りたたむ",
+    "deleteChat": "削除"
+  },
+  "chat": {
+    "welcome": "どこから始めましょうか？",
+    "placeholder": "何でも質問してください",
+    "send": "送信",
+    "attachFiles": "ファイルを添付",
+    "voiceInput": "音声入力",
+    "voiceMode": "音声モード",
+    "quickAction1": "カスタムスキンケアルーティンを作成",
+    "quickAction2": "成分の安全性を分析",
+    "quickAction3": "脂性肌向けの推奨品",
+    "sources": "出典と参考文献",
+    "readAloud": "読み上げ",
+    "stopReading": "停止",
+    "error": "申し訳ございません、エラーが発生しました。"
+  },
+  "navbar": {
+    "selectModel": "モデル選択",
+    "fullScreen": "全画面",
+    "moreOptions": "その他",
+    "language": "言語"
+  },
+  "footer": {
+    "disclaimer": "CosmoGPTは誤りを含む可能性があります。重要なアドバイスはご確認ください。"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "hi": "हिन्दी"
+  },
+  "models": {
+    "cosmoV1": "CosmoGPT v1.0",
+    "cosmoV1Desc": "デフォルトの化粧品RAGボット、高速かつ正確。",
+    "cosmoPro": "CosmoGPT Pro",
+    "cosmoProDesc": "詳細な処方と安全性分析。",
+    "miniLM": "MiniLM-L6-v2",
+    "miniLMDesc": "高速埋め込み検索。"
+  }
+}
